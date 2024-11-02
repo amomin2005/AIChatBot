@@ -1,35 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
 import './App.css'
+import ReactMarkdown from 'react-markdown';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [question, setquestion] = useState("");
+  const [answer, setanswer] = useState("");
+
+  async function APICall(){
+    const response = await axios({
+      url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyALreEffrbW8UC_b0Q5ntUNjivH3CDF0d0",
+      method: "post",
+      data : {"contents":[{"parts":[{"text":question}]}]}
+    });
+    console.log(setanswer(response['data']['candidates'][0]['content']['parts'][0]['text']));
+}
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <body>
+      <div className='div1'>
+      <h1> Aario (Ai ChatBot) </h1>
+      <textarea className='textside' value={question} onChange={(e) => setquestion(e.target.value)} cols = "30" rows = "10"> Type Question </textarea>
+      <button className='generatebutton' onClick={APICall}>Search</button>
+      <ReactMarkdown>{answer}</ReactMarkdown>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </body>
     </>
-  )
+  );
 }
 
 export default App
