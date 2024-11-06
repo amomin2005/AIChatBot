@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css'
 import ReactMarkdown from 'react-markdown';
 
-function App() {
+const App = () => {
   const [question, setquestion] = useState("");
   const [answer, setanswer] = useState("");
 
@@ -18,6 +18,13 @@ function App() {
 
   return (
     <>
+    <header>
+      <nav>
+        <a href='#'> Home </a>
+        <a href='#'> Links </a>
+        <a href='#'> Contact </a>
+      </nav>
+    </header>
     <body>
       <div className='div1'>
       <h1> Aario (Ai ChatBot) </h1>
