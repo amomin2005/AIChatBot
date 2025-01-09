@@ -27,7 +27,7 @@ const App = () => {
     </header>
     <body>
       <div className='div1'>
-      <h1> Aario (Ai ChatBot) </h1>
+      <h1> (Ai-Powered ChatBot) by Aarez</h1>
       <textarea className='textside' value={question} onChange={(e) => setquestion(e.target.value)} cols = "30" rows = "10"> Type Question </textarea>
       <button className='generatebutton' onClick={APICall}>Search</button>
       <ReactMarkdown>{answer}</ReactMarkdown>
